@@ -33,14 +33,10 @@
     "tap": "^19.2.3",
     "ws": "^8.17.0"
   },
-  "scripts": {
-    "watch": "nodemon --watch ./ --ignore ./examples --ext js,html,xhtml,json --exec npm run test",
-    "test": "npm run lint && npm run test-spec",
-    "pre-commit": "npm run autofix && npm test",
-    "lint": "eslint .",
-    "autofix": "eslint . --fix",
-    "test-spec": "tap --allow-incomplete-coverage test/*spec.js",
-    "test-perf": "node test/performance.js"
+ "scripts": {
+  "start": "node api/proxy.js"
+}
+
   },
   "license": "AGPL-3.0",
   "main": "lib/unblocker.js",
