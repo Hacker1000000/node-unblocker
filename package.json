@@ -1,8 +1,8 @@
 {
   "name": "unblocker",
   "description": "Web proxy for evading internet censorship & general-purpose library for rewriting remote websites.",
-  "author": "Nathan Friedly - http://nfriedly.com",
   "version": "2.3.1",
+  "author": "Nathan Friedly - http://nfriedly.com",
   "repository": "git://github.com/nfriedly/node-unblocker.git",
   "engines": {
     "node": ">=16.17"
@@ -18,7 +18,8 @@
     "mime": "^4.0.3",
     "send": "^0.19.0",
     "set-cookie-parser": "^2.6.0",
-    "tld": "0.0.2"
+    "tld": "0.0.2",
+    "unblocker": "^3.0.0"
   },
   "devDependencies": {
     "concat-stream": "^2.0.0",
@@ -33,15 +34,20 @@
     "tap": "^19.2.3",
     "ws": "^8.17.0"
   },
- "scripts": {
-  "start": "node api/proxy.js"
-}
-
+  "scripts": {
+    "start": "node api/proxy.js",
+    "watch": "nodemon --watch ./ --ignore ./examples --ext js,html,xhtml,json --exec npm run test",
+    "test": "npm run lint && npm run test-spec",
+    "pre-commit": "npm run autofix && npm test",
+    "lint": "eslint .",
+    "autofix": "eslint . --fix",
+    "test-spec": "tap --allow-incomplete-coverage test/*spec.js",
+    "test-perf": "node test/performance.js"
   },
-  "license": "AGPL-3.0",
   "main": "lib/unblocker.js",
   "files": [
     "lib/",
     "examples/"
-  ]
+  ],
+  "license": "AGPL-3.0"
 }
