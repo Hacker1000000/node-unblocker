@@ -19,7 +19,7 @@
     "send": "^0.19.0",
     "set-cookie-parser": "^2.6.0",
     "tld": "0.0.2",
-    "unblocker": "^3.0.0"
+    "unblocker": "^2.3.1"
   },
   "scripts": {
     "start": "node api/proxy.js"
