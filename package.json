@@ -1,6 +1,7 @@
 {
   "name": "node-unblocker-vercel",
   "version": "1.0.0",
+  "description": "Node Unblocker Proxy deployed on Vercel",
   "main": "api/proxy.js",
   "scripts": {
     "start": "node api/proxy.js"
