@@ -1,6 +1,6 @@
-import express from "express";
-import unblocker from "unblocker";
-import { createServer } from "http";
+const express = require("express");
+const unblocker = require("unblocker");
+const { createServer } = require("http");
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 // Export for Vercel
-export default function handler(req, res) {
+module.exports = (req, res) => {
   const server = createServer(app);
   server.emit("request", req, res);
-}
+};
