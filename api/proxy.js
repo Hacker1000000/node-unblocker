@@ -11,7 +11,7 @@ app.use(
   })
 );
 
-// Homepage with search box
+// Homepage
 app.get("/", (req, res) => {
   res.send(`
     <html>
@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   `);
 });
 
-// Export the serverless handler
+// Export function for Vercel
 module.exports = (req, res) => {
   const server = createServer(app);
   server.emit("request", req, res);
