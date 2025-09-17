@@ -1,25 +1,24 @@
-import unblocker from "unblocker";
 import express from "express";
+import unblocker from "unblocker";
 import { createServer } from "http";
 
-// Create an Express app
 const app = express();
 
-// Use node-unblocker middleware
+// Node Unblocker middleware
 app.use(
   unblocker({
-    prefix: "/proxy/", // All proxied URLs will start with /proxy/
+    prefix: "/proxy/",
   })
 );
 
-// A simple homepage with a search box
+// Optional homepage
 app.get("/", (req, res) => {
   res.send(`
     <html>
-      <body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+      <body style="text-align:center; margin-top:50px; font-family:sans-serif;">
         <h1>Node Unblocker Proxy</h1>
         <form method="GET" action="/proxy/https://example.com/">
-          <input name="url" placeholder="Enter a URL" style="width: 300px;"/>
+          <input name="url" placeholder="Enter a URL" style="width:300px;">
           <button type="submit">Go</button>
         </form>
       </body>
@@ -27,7 +26,7 @@ app.get("/", (req, res) => {
   `);
 });
 
-// Export as Vercel serverless handler
+// Export for Vercel
 export default function handler(req, res) {
   const server = createServer(app);
   server.emit("request", req, res);
