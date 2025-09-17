@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
       <body style="text-align:center; margin-top:50px; font-family:sans-serif;">
         <h1>Node Unblocker Proxy</h1>
         <form method="GET" action="/proxy/">
-          <input name="url" placeholder="Enter a URL" style="width:300px;">
-          <button type="submit">Go</button>
-        </form>
+  <input name="url" placeholder="Enter a full URL (https://...)" required>
+  <button type="submit">Go</button>
+</form>
       </body>
     </html>
   `);
