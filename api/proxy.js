@@ -11,7 +11,7 @@ app.use(
   })
 );
 
-// Optional homepage
+// Homepage with search box
 app.get("/", (req, res) => {
   res.send(`
     <html>
@@ -25,3 +25,9 @@ app.get("/", (req, res) => {
     </html>
   `);
 });
+
+// Export the serverless handler
+module.exports = (req, res) => {
+  const server = createServer(app);
+  server.emit("request", req, res);
+};
