@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
     <html>
       <body style="text-align:center; margin-top:50px; font-family:sans-serif;">
         <h1>Node Unblocker Proxy</h1>
-        <form method="GET" action="/proxy/https://example.com/">
+        <form method="GET" action="/proxy/">
           <input name="url" placeholder="Enter a URL" style="width:300px;">
           <button type="submit">Go</button>
         </form>
@@ -25,9 +25,3 @@ app.get("/", (req, res) => {
     </html>
   `);
 });
-
-// Export for Vercel
-module.exports = (req, res) => {
-  const server = createServer(app);
-  server.emit("request", req, res);
-};
