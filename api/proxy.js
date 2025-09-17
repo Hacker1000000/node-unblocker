@@ -1,15 +1,23 @@
-const express = require("express");
+// api/proxy.js
 const unblocker = require("unblocker");
-const { createServer } = require("http");
 
-const app = express();
+module.exports = (req, res) => {
+  // Parse ?url= parameter
+  const urlParam = req.url.split("?url=")[1];
+  if (!urlParam) {
+    res.statusCode = 400;
+    return res.end("Missing ?url= parameter. Example: /proxy/?url=https://example.com");
+  }
 
-// Node Unblocker middleware
-app.use(
-  unblocker({
-    prefix: "/proxy/",
-  })
-);
+  // Ensure full URL
+  const target = urlParam.startsWith("http") ? urlParam : `http://${urlParam}`;
+
+  // Initialize Unblocker
+  unblocker({ prefix: "/proxy" })(req, res, () => {
+    res.statusCode = 502;
+    res.end(`Failed to proxy: ${target}`);
+  });
+};
 
 // Homepage
 app.get("/", (req, res) => {
