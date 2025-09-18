@@ -3,7 +3,7 @@ import Unblocker from "unblocker";
 
 const app = express();
 
-// Add unblocker middleware
+// Mount unblocker at /api/proxy/
 app.use(
   "/",
   new Unblocker({
@@ -11,5 +11,5 @@ app.use(
   })
 );
 
-// Export for Vercel
+// Export handler for Vercel
 export default app;
