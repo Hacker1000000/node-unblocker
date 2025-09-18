@@ -2,7 +2,6 @@
   "name": "node-unblocker",
   "version": "1.0.0",
   "description": "Simple unblocker proxy deployed on Vercel",
-  "main": "api/proxy.js",
   "type": "module",
   "dependencies": {
     "express": "^4.19.2",
