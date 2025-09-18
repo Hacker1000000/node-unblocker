@@ -6,7 +6,7 @@ export default function handler(req, res) {
   const target = req.query.url;
 
   if (!target) {
-    res.status(400).send("Missing ?url= parameter. Example: /api/proxy.js?url=https://example.com");
+    res.status(400).send("Missing ?url= parameter. Example: /api/proxy?url=https://example.com");
     return;
   }
 
