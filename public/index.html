@@ -1,31 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Node Unblocker Proxy</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    input[type="text"] {
-      width: 60%;
-      padding: 10px;
-      font-size: 16px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 5px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Node Unblocker Proxy</h1>
-  <form method="GET" action="/api/proxy.js">
-    <input type="text" name="url" placeholder="https://www.wikipedia.org" required>
-    <button type="submit">Go</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Node Unblocker</title>
+  </head>
+  <body>
+    <h1>Welcome to Node Unblocker</h1>
+    <p>Try visiting:</p>
+    <ul>
+      <li>
+        <a href="/api/proxy/https://wikipedia.org">Wikipedia through proxy</a>
+      </li>
+      <li>
+        <a href="/api/proxy/https://example.com">Example.com through proxy</a>
+      </li>
+    </ul>
+  </body>
 </html>
