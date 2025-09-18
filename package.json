@@ -1,17 +1,17 @@
 {
-  "name": "node-unblocker-vercel",
+  "name": "node-unblocker-proxy",
   "version": "1.0.0",
-  "description": "Node Unblocker Proxy deployed on Vercel",
+  "description": "Web proxy for evading internet censorship, running on Vercel.",
   "main": "api/proxy.js",
   "scripts": {
     "start": "node api/proxy.js"
   },
+  "dependencies": {
+    "express": "^4.19.2",
+    "http-proxy": "^1.18.1"
+  },
   "engines": {
     "node": ">=16.17"
   },
-  "dependencies": {
-    "express": "^4.19.2",
-    "unblocker": "^2.3.1"
-  },
-  "license": "AGPL-3.0"
+  "license": "MIT"
 }
