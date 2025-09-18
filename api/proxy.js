@@ -1,38 +1,17 @@
-// api/proxy.js
-const Unblocker = require("unblocker");
+import httpProxy from "http-proxy";
 
-module.exports = (req, res) => {
-  try {
-    // Expect ?url= parameter
-    const queryIndex = req.url.indexOf("?url=");
-    if (queryIndex === -1) {
-      res.statusCode = 400;
-      res.setHeader("Content-Type", "text/plain");
-      return res.end("Missing ?url= parameter. Example: /api/proxy.js?url=https://example.com");
-    }
+const proxy = httpProxy.createProxyServer({ changeOrigin: true });
 
-    const urlParam = decodeURIComponent(req.url.slice(queryIndex + 5));
-    if (!urlParam) {
-      res.statusCode = 400;
-      res.setHeader("Content-Type", "text/plain");
-      return res.end("Missing URL value after ?url=");
-    }
+export default function handler(req, res) {
+  const target = req.query.url;
 
-    // Ensure proper protocol
-    const target = urlParam.startsWith("http") ? urlParam : `http://${urlParam}`;
-
-    // Initialize Unblocker with prefix
-    const unblocker = Unblocker({ prefix: "/proxy" });
-
-    // Handle the request
-    unblocker(req, res, () => {
-      res.statusCode = 502;
-      res.setHeader("Content-Type", "text/plain");
-      res.end(`Failed to proxy: ${target}`);
-    });
-  } catch (err) {
-    res.statusCode = 500;
-    res.setHeader("Content-Type", "text/plain");
-    res.end(`Internal server error: ${err.message}`);
+  if (!target) {
+    res.status(400).send("Missing ?url= parameter. Example: /api/proxy.js?url=https://example.com");
+    return;
   }
-};
+
+  proxy.web(req, res, { target }, (err) => {
+    console.error("Proxy error:", err);
+    res.status(500).send("Proxy error: " + err.message);
+  });
+}
