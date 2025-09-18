@@ -1,17 +1,15 @@
-import httpProxy from "http-proxy";
+import express from "express";
+import Unblocker from "unblocker";
 
-const proxy = httpProxy.createProxyServer({ changeOrigin: true });
+const app = express();
 
-export default function handler(req, res) {
-  const target = req.query.url;
+// Add unblocker middleware
+app.use(
+  "/",
+  new Unblocker({
+    prefix: "/api/proxy/"
+  })
+);
 
-  if (!target) {
-    res.status(400).send("Missing ?url= parameter. Example: /api/proxy?url=https://example.com");
-    return;
-  }
-
-  proxy.web(req, res, { target }, (err) => {
-    console.error("Proxy error:", err);
-    res.status(500).send("Proxy error: " + err.message);
-  });
-}
+// Export for Vercel
+export default app;
